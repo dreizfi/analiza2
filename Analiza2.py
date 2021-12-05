@@ -3,7 +3,7 @@
 # Adi Buchris
 A = [[1, 2, 3, 4], [1, 4, 9, 16], [1, 8, 27, 64], [1, 16, 81, 256]]
 B=[[2], [10], [44], [190]]
-def det(M):
+def det(M): # Checking whether determinant is different from 0
     a = M[0][0]*(M[1][1]*((M[2][2]*M[3][3])-(M[3][2]*M[2][3]))  -M[1][2]*((M[2][1]*M[3][3])-(M[3][1]*M[2][3])) +M[1][3]*((M[2][1]*M[3][2])-(M[3][1]*M[2][2])))
 
     b= -M[0][1]*(M[1][0]*((M[2][2]*M[3][3])-(M[3][2]*M[2][3]))  -M[1][2]*((M[2][0]*M[3][3])-(M[3][0]*M[2][3])) +M[1][3]*((M[2][0]*M[3][2])-(M[3][0]*M[2][2])))
@@ -18,7 +18,7 @@ def det(M):
         print("This matrix is regular")
     else:
         print("This matrix is not regular")
-def elementryMatrix(n):
+def elementryMatrix(n): # Creates a single n-sized matrix
     c = [[0 for row in range(n)] for col in range(n)]
     for i in range(n):
         for j in range(n):
@@ -27,7 +27,7 @@ def elementryMatrix(n):
             else:
                 c[i][j]=0
     return c
-def mulMatrix(A,B):
+def mulMatrix(A,B): # Calculates matrix multiplication
     n=len(A)
     c = [[0 for row in range(n)] for col in range(n)]
     for i in range(n):
@@ -37,7 +37,7 @@ def mulMatrix(A,B):
                 temp+=A[i][j]*B[j][k]
             c[i][k]=temp
     return c
-def elementary(A):
+def elementary(A): # Calculate reverse matrix
     x = len(A)
     U = elementryMatrix(4)#מטריצת יחידה
     for i in range(x):
@@ -66,7 +66,7 @@ def SwitchRows(matrix, i, j):
     matrix[i]=matrix[j]
     matrix[j]=temp
 
-def lm(matrix, b):
+def lm(matrix, b):  # Calculates y
     n = len(matrix)
     y = [[0], [0], [0], [0]]
     for i in range(n):
@@ -76,7 +76,7 @@ def lm(matrix, b):
         y[i][0] = y[i][0] / matrix[i][i]
     return y
 
-def um(matrix, y):
+def um(matrix, y):  # Calculates x
     x = [[0], [0], [0], [0]]
     for i in range(4):
         x[3 - i][0] = y[3 - i][0]
@@ -87,7 +87,7 @@ def um(matrix, y):
 def printf(matrix):
     for i in matrix:
         print(i)
-def MatrixDiagonal(matrix):
+def MatrixDiagonal(matrix): # Does tests and changes lines when needed
     for i in range(4):
         MaxInd = i
         for j in range(i+1, 4):
@@ -102,7 +102,7 @@ def MatrixDiagonal(matrix):
             print("error!")
             return
     return matrix
-def LU(A,B):
+def LU(A,B): # Calculates L,U
     x = len(A)
     E = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]# מטריצת יחידה
     L = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
@@ -112,7 +112,7 @@ def LU(A,B):
             E[k][i] = -A[k][i]/A[i][i]
             L[k][i] = A[k][i] / A[i][i]
             A = mulMatrix(E, A)
-    return L,A
+    return L,A # A=U,L=L
 
 det(A)
 elementary(A)
